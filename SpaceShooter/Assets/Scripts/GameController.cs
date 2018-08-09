@@ -40,7 +40,6 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     private int DefaultPlayerLife;
     private int PlayerLife;
-    private readonly bool IsPlayerDead;
 
     [SerializeField]
     private int BossStageGap;
@@ -50,11 +49,9 @@ public class GameController : MonoBehaviour {
 	void Start () {
         IsGameOver = false;
         IsBossAlive = false;
-        // IsPlayerDead = false;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         PlayerLife = DefaultPlayerLife - 1;
         hazardRoutine = StartCoroutine(Hazards());
-        Debug.Log("coroutine1");
 
         for (int i = 0; i < BGs.Length; i++)
         {
@@ -75,7 +72,6 @@ public class GameController : MonoBehaviour {
     public void GameOver()
     {
         //StopCoroutine(hazardRoutine);
-        Debug.Log("stop coroutine1");
 
 
         Invoke("WaitGameOver", 5); 
@@ -91,7 +87,6 @@ public class GameController : MonoBehaviour {
             player.transform.position = Vector3.zero;
             player.gameObject.SetActive(true);
             //hazardRoutine = StartCoroutine(Hazards());
-            Debug.Log("new coroutine");
         }
         else
         {
@@ -118,7 +113,6 @@ public class GameController : MonoBehaviour {
         ui.HideGameOver();
 
         hazardRoutine = StartCoroutine(Hazards());
-        Debug.Log("coroutine2");
 
         for (int i = 0; i < BGs.Length; i++)
         {
@@ -176,16 +170,12 @@ public class GameController : MonoBehaviour {
                     if (randValue == 1)
                     {
                         SpawnAsteroid();
-                        Debug.Log("aste1");
-
                         asteroidSpawnCount--;
                         yield return pointTwoSec;
                     }
                     else
                     {
                         SpawnEnemy();
-                        Debug.Log("enemy1");
-
                         enemySpawnCount--;
                         yield return pointTwoSec;
                     }
@@ -195,8 +185,6 @@ public class GameController : MonoBehaviour {
                     for (int i = 0; i < enemySpawnCount; i++)
                     {
                         SpawnEnemy();
-                        Debug.Log("enemy2");
-
                         yield return pointTwoSec;
                     }
                     break;
@@ -206,8 +194,6 @@ public class GameController : MonoBehaviour {
                     for (int i = 0; i < asteroidSpawnCount; i++)
                     {
                         SpawnAsteroid();
-                        Debug.Log("aste2");
-
                         yield return pointTwoSec;
                     }
                     break;
@@ -239,10 +225,6 @@ public class GameController : MonoBehaviour {
             while (IsBossAlive)
             {
                 yield return threeSec;
-                Debug.Log("boss1");
-                
-
-
             }
 
             //TODO 보스전 중 죽었을시 동작 pause 
