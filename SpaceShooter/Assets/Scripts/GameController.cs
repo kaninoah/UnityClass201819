@@ -86,7 +86,7 @@ public class GameController : MonoBehaviour {
             ui.SetPlayerLife(PlayerLife);
             player.transform.position = Vector3.zero;
             player.gameObject.SetActive(true);
-            //hazardRoutine = StartCoroutine(Hazards());
+            ////hazardRoutine = StartCoroutine(Hazards());
         }
         else
         {
@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour {
 
     public void GameRestart()
     {
-        //SceneManager.LoadScene(0);
+        ////SceneManager.LoadScene(0);
         player.transform.position = Vector3.zero;
         player.gameObject.SetActive(true);
         PlayerLife = DefaultPlayerLife - 1; 
